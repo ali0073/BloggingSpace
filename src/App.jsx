@@ -1,5 +1,12 @@
+import { BrowserRouter } from "react-router-dom";
+import Routing from "./routes/Routing";
+
 function App() {
-  return <div>Blogging Space</div>;
+  return (
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
+  );
 }
 
 export default App;
