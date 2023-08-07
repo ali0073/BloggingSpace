@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../routes/Routes";
-import { fetchUsers, usersFiltering } from "../utils/utils";
+import { fetchUsers, searchUsers } from "../utils/utils";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +20,7 @@ const Users = () => {
     fetchUsers(setUsers);
   }, []);
 
-  const filteredUsers = usersFiltering(query, users);
+  const filteredUsers = searchUsers(query, users);
 
   return (
     <>
