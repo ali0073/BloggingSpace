@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { getRequest } from "../network/axiosClient";
+import { useEffect, useState } from "react";
 import {
   Container,
   List,
@@ -7,40 +6,28 @@ import {
   ListItemText,
   TextField,
 } from "@mui/material";
-import { AppContext } from "../context/AppContextProvider";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../routes/Routes";
+import { fetchUsers, usersFiltering } from "../utils/utils";
 
 const Users = () => {
-  const [FetchedUsersList, setFetchedUsersList] = useState([]);
-  const [searchFieldText, setSearchFieldText] = useState("");
-  const { setOpenUserId } = useContext(AppContext);
+  const [users, setUsers] = useState([]);
+  const [query, setQuery] = useState("");
 
   const navigate = useNavigate();
 
-  async function fetchUsers() {
-    try {
-      const usersList = await getRequest("users");
-      setFetchedUsersList(usersList?.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
-    fetchUsers();
+    fetchUsers(setUsers);
   }, []);
 
-  const filteredUsers = FetchedUsersList.filter((user) =>
-    user?.name?.toLowerCase().includes(searchFieldText.toLowerCase())
-  );
+  const filteredUsers = usersFiltering(query, users);
 
   return (
     <>
       <Container sx={{ marginTop: "40px" }}>
         <TextField
-          onChange={(e) => setSearchFieldText(e?.target?.value)}
-          value={searchFieldText}
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
           fullWidth
           label="search the user"
         />
@@ -48,13 +35,12 @@ const Users = () => {
       <Container>
         <List>
           {filteredUsers.map((user) => (
-            <ListItem key={user?.id}>
+            <ListItem key={user.id}>
               <ListItemText
-                primary={`${user?.name} (${user?.username})`}
-                secondary={`Email: ${user?.email}, Website: ${user?.website}, Company: ${user?.company?.name}`}
+                primary={`${user.name} (${user.username})`}
+                secondary={`Email: ${user.email}, Website: ${user.website}, Company: ${user.company.name}`}
                 onClick={() => {
-                  setOpenUserId(user?.id);
-                  navigate(`${ROUTES.USERS}/${user?.id}`);
+                  navigate(`${ROUTES.USERS}/${user.id}`);
                 }}
               />
             </ListItem>
