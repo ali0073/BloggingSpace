@@ -17,9 +17,4 @@ export const filterPosts = (posts, id) => {
   return posts.filter(item => item.userId === parseInt(id));
 };
 
-export const errorHandler = error => {
-  if (error.response.status === 500) {
-    toast.error("Something went wrong, please try again!");
-  } 
-};
 

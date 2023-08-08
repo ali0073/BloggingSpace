@@ -1,16 +1,18 @@
 import axios from "axios";
-import { errorHandler } from "../utils/utils";
+import { toast } from "react-toastify";
 
 const axiosClient = axios.create();
 
 axiosClient.defaults.baseURL = `${import.meta.env.VITE_BASE_URL}`;
 
-axiosClient.interceptors.response.use(function (response) {
+axiosClient.interceptors.response.use( (response) => {
   
   return response;
-}, function (error) {
+}, (error) => {
 
-  errorHandler(error)
+  if (error.response.status === 404) {
+    toast.error("Something went wrong, please try again!");
+  } 
   return Promise.reject(error);
 });
 
