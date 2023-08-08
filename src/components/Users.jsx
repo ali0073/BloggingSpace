@@ -7,8 +7,9 @@ import {
   TextField,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../routes/Routes";
+import { routes } from "../routes/routes";
 import { fetchUsers, searchUsers } from "../utils/utils";
+import { urls } from "../network/urls";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -17,7 +18,7 @@ const Users = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUsers(setUsers);
+    fetchUsers(setUsers, urls.USERS);
   }, []);
 
   const filteredUsers = searchUsers(query, users);
@@ -40,7 +41,7 @@ const Users = () => {
                 primary={`${user.name} (${user.username})`}
                 secondary={`Email: ${user.email}, Website: ${user.website}, Company: ${user.company.name}`}
                 onClick={() => {
-                  navigate(`${ROUTES.USERS}/${user.id}`);
+                  navigate(`${routes.USERS}/${user.id}`);
                 }}
               />
             </ListItem>
@@ -52,3 +53,4 @@ const Users = () => {
 };
 
 export default Users;
+

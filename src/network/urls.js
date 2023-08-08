@@ -1,3 +1,5 @@
-export const URLS = {
+export const urls = {
   USERS: "users",
+  USER_POSTS: "posts",
 };
+
