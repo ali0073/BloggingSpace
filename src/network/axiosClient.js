@@ -5,10 +5,18 @@ const axiosClient = axios.create();
 
 axiosClient.defaults.baseURL = `${import.meta.env.VITE_BASE_URL}`;
 
-export const getRequest = URL => {
+axiosClient.interceptors.response.use(function (response) {
+  
+  return response;
+}, function (error) {
+
+  errorHandler(error)
+  return Promise.reject(error);
+});
+
+export const getRequest = url => {
   return axiosClient
-    .get(`${URL}`)
+    .get(`${url}`)
     .then(response => response)
-    .catch(error => errorHandler(error));
 };
 

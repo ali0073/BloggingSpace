@@ -14,16 +14,12 @@ export const searchUsers = (query, users) => {
 };
 
 export const filterPosts = (posts, id) => {
-  return posts.filter((item) => item.userId === parseInt(id));
+  return posts.filter(item => item.userId === parseInt(id));
 };
 
 export const errorHandler = error => {
-  if (error.response.status === 404) {
+  if (error.response.status === 500) {
     toast.error("Something went wrong, please try again!");
-  } else if (error.code === "ERR_NETWORK") {
-    toast.error("connection problems");
-  } else if (error.code === "ERR_CANCELED") {
-    toast.error("connection canceled");
-  }
+  } 
 };
 
