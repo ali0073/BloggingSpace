@@ -5,4 +5,3 @@ export const searchUsers = (query, users) => {
 export const filterPosts = (posts, id) => {
   return posts.filter(item => item.userId === parseInt(id));
 };
-

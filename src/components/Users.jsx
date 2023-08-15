@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  CircularProgress,
   Container,
   List,
   ListItem,
@@ -9,25 +10,24 @@ import {
 import { useNavigate } from "react-router-dom";
 import { routes } from "../routes/routes";
 import { searchUsers } from "../utils/utils";
-import { urls } from "../network/urls";
-import { useQuery } from "@tanstack/react-query";
-import { getRequest } from "../network/axiosClient";
+import { useGetHandler } from "../network/useQueryClient";
+import {keys} from '../network/keys'
 
 const Users = () => {
 
   const [query, setQuery] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState([])
+  const [users, setUsers] = useState([])
 
   const navigate = useNavigate();
 
-  const { data, status } = useQuery({ queryKey: ['users'], queryFn: () => getRequest(urls.USERS) })
+  const {data, status} = useGetHandler(keys.users)   
 
   useEffect(() => {
-    if (status === "success") {
-      const users = searchUsers(query, data);
-      setFilteredUsers(users);
+    if (data) {
+      const user = searchUsers(query, data);
+      setUsers(user);
     }
-  }, [status, query, data]);
+  }, [data, query]);
 
   return (
     <>
@@ -39,9 +39,9 @@ const Users = () => {
           label="search the user"
         />
       </Container>
-      <Container>
+      {status === 'loading' ? <CircularProgress sx={{marginLeft: '50%', marginTop: '20%'}} /> : <Container>
         <List>
-          {filteredUsers.map((user) => (
+          {users.map((user) => (
             <ListItem key={user.id}>
               <ListItemText
                 primary={`${user.name} (${user.username})`}
@@ -53,7 +53,7 @@ const Users = () => {
             </ListItem>
           ))}
         </List>
-      </Container>
+      </Container>}
     </>
   );
 };
