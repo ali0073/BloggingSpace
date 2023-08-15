@@ -1,5 +1,5 @@
 export const urls = {
-  USERS: "usedrs",
+  USERS: "users",
   USER_POSTS: "posts",
 };
 

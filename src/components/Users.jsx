@@ -8,20 +8,26 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../routes/routes";
-import { fetchUsers, searchUsers } from "../utils/utils";
+import { searchUsers } from "../utils/utils";
 import { urls } from "../network/urls";
+import { useQuery } from "@tanstack/react-query";
+import { getRequest } from "../network/axiosClient";
 
 const Users = () => {
-  const [users, setUsers] = useState([]);
+
   const [query, setQuery] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([])
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchUsers(setUsers, urls.USERS);
-  }, []);
+  const { data, status } = useQuery({ queryKey: ['users'], queryFn: () => {return getRequest(urls.USERS)} })
 
-  const filteredUsers = searchUsers(query, users);
+  useEffect(() => {
+    if (status === "success") {
+      const users = searchUsers(query, data);
+      setFilteredUsers(users);
+    }
+  }, [status, query, data]);
 
   return (
     <>

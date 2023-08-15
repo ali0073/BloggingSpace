@@ -10,15 +10,14 @@ axiosClient.interceptors.response.use( (response) => {
   return response;
 }, (error) => {
 
-  if (error.response.status === 404) {
+  if (error.response.status === 500) {
     toast.error("Something went wrong, please try again!");
   } 
   return Promise.reject(error);
 });
 
-export const getRequest = url => {
-  return axiosClient
-    .get(`${url}`)
-    .then(response => response)
+export const getRequest = async url => {
+  const users = await axiosClient.get(`${url}`)
+  return users.data
 };
 
