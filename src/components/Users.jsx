@@ -20,7 +20,7 @@ const Users = () => {
 
   const navigate = useNavigate();
 
-  const { data, status } = useQuery({ queryKey: ['users'], queryFn: () => {return getRequest(urls.USERS)} })
+  const { data, status } = useQuery({ queryKey: ['users'], queryFn: () => getRequest(urls.USERS) })
 
   useEffect(() => {
     if (status === "success") {
