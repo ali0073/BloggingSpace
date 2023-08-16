@@ -16,7 +16,6 @@ import { routes } from "../routes/routes"
 
 const UserPosts = () => {
     const [posts, setPosts] = useState([])
-    const [comments, setComments] = useState(0)
 
     const navigate = useNavigate()
 
@@ -46,7 +45,6 @@ const UserPosts = () => {
                                 sx={{color: "black", borderColor: "black"}}
                                 variant="outlined"
                                 onClick={() => {
-                                    setComments(post.id)
                                     navigate(`${routes.USERS}/${id}/${routes.POSTS}/${routes.COMMENTS}`)
                                 }}
                                 >
