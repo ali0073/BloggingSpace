@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { keys } from "../network/keys"
 import { urls } from "../network/urls"
 import { useGetHandler } from "../network/useQueryClient"
-import { filterPosts } from "../utils/utils"
+import { addID, filterPosts } from "../utils/utils"
 import { useNavigate, useParams } from "react-router-dom"
 import {
     Container,
@@ -45,7 +45,7 @@ const UserPosts = () => {
                                 sx={{color: "black", borderColor: "black"}}
                                 variant="outlined"
                                 onClick={() => {
-                                    navigate(`${routes.USERS}/${id}/${routes.POSTS}/${routes.COMMENTS}`)
+                                    navigate(addID(routes.COMMENTS, id))
                                 }}
                                 >
                                 Show comments
