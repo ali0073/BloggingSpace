@@ -17,6 +17,7 @@ axiosClient.interceptors.response.use( response => {
 });
 
 export const getRequest = async url => {
-  return await axiosClient.get(`${url}`)
+  const response = await axiosClient.get(`${url}`)
+  return response.data
 };
 

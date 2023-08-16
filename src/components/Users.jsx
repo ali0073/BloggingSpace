@@ -15,17 +15,16 @@ import {keys} from '../network/keys'
 import {urls} from '../network/urls'
 
 const Users = () => {
-
   const [query, setQuery] = useState("");
   const [users, setUsers] = useState([])
 
   const navigate = useNavigate();
 
-  const {data, status} = useGetHandler(keys.USERS, urls.USERS)   
+  const {data, isLoading} = useGetHandler(keys.USERS, urls.USERS)   
 
   useEffect(() => {
     if (data) {
-      const user = searchUsers(query, data.data);
+      const user = searchUsers(query, data);
       setUsers(user);
     }
   }, [data, query]);
@@ -40,7 +39,7 @@ const Users = () => {
           label="search the user"
         />
       </Container>
-      {status === 'loading' ? <CircularProgress sx={{marginLeft: '50%', marginTop: '20%'}} /> : <Container>
+      {isLoading ? <CircularProgress sx={{marginLeft: '50%', marginTop: '20%'}} /> : <Container>
         <List>
           {users.map(user => (
             <ListItem key={user.id}>
