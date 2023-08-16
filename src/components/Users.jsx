@@ -47,7 +47,7 @@ const Users = () => {
                 primary={`${user.name} (${user.username})`}
                 secondary={`Email: ${user.email}, Website: ${user.website}, Company: ${user.company.name}`}
                 onClick={() => {
-                  navigate(`${routes.USERS}/${user.id}`);
+                  navigate(`${routes.USERS}/${user.id}/${routes.POSTS}`);
                 }}
               />
             </ListItem>

@@ -7,7 +7,7 @@ const Routing = () => {
   return (
     <Routes>
       <Route path={routes.USERS} element={<Users />} />
-      <Route path={`${routes.USERS}/:id`} element={<UserPosts />} />
+      <Route path={`${routes.USERS}/:id/${routes.POSTS}`} element={<UserPosts />} />
     </Routes>
   );
 };

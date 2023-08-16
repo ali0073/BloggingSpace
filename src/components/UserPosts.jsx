@@ -3,7 +3,7 @@ import { keys } from "../network/keys"
 import { urls } from "../network/urls"
 import { useGetHandler } from "../network/useQueryClient"
 import { filterPosts } from "../utils/utils"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import {
     Container,
     List,
@@ -11,12 +11,14 @@ import {
     ListItemText,
     CircularProgress,
     Button,
-    ListItemButton,
 } from "@mui/material";
+import { routes } from "../routes/routes"
 
 const UserPosts = () => {
     const [posts, setPosts] = useState([])
     const [comments, setComments] = useState(0)
+
+    const navigate = useNavigate()
 
     const {id} = useParams()
 
@@ -43,17 +45,13 @@ const UserPosts = () => {
                             <Button
                                 sx={{color: "black", borderColor: "black"}}
                                 variant="outlined"
-                                onClick={() => setComments(post.id)}
+                                onClick={() => {
+                                    setComments(post.id)
+                                    navigate(`${routes.USERS}/${id}/${routes.POSTS}/${routes.COMMENTS}`)
+                                }}
                                 >
                                 Show comments
                             </Button>
-                            {comments === post.id && <Container>
-                                <ListItem>
-                                    <ListItemText
-                                        primary={"Comments"}
-                                    />
-                                </ListItem>
-                            </Container>}
                         </Container>
                     </ListItem>
                     ))}
