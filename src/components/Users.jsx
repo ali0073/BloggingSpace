@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../routes/routes";
-import { searchUsers } from "../utils/utils";
+import { replaceID, searchUsers } from "../utils/utils";
 import { useGetHandler } from "../network/useQueryClient";
 import {keys} from '../network/keys'
 import {urls} from '../network/urls'
@@ -47,7 +47,7 @@ const Users = () => {
                 primary={`${user.name} (${user.username})`}
                 secondary={`Email: ${user.email}, Website: ${user.website}, Company: ${user.company.name}`}
                 onClick={() => {
-                  navigate(`${routes.USERS}/${user.id}`);
+                  navigate(replaceID(routes.POSTS, user.id));
                 }}
               />
             </ListItem>
