@@ -6,7 +6,7 @@ export const filterPosts = (posts, id) => {
   return posts.filter(item => item.userId === parseInt(id));
 };
 
-export const addID = (route, id) => {
+export const replaceID = (route, id) => {
   return route.replace(':id', id)
 }
 
