@@ -1,8 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import Routing from "./routes/Routing";
 
-function App() {
-  
+function App() { 
   return (
     <BrowserRouter>
       <Routing />

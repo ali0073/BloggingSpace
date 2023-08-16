@@ -6,7 +6,6 @@ const axiosClient = axios.create();
 axiosClient.defaults.baseURL = `${import.meta.env.VITE_BASE_URL}`;
 
 axiosClient.interceptors.response.use( response => {
-  
   return response;
 }, error => {
 
