@@ -12,6 +12,7 @@ import { routes } from "../routes/routes";
 import { searchUsers } from "../utils/utils";
 import { useGetHandler } from "../network/useQueryClient";
 import {keys} from '../network/keys'
+import {urls} from '../network/urls'
 
 const Users = () => {
 
@@ -20,11 +21,11 @@ const Users = () => {
 
   const navigate = useNavigate();
 
-  const {data, status} = useGetHandler(keys.users)   
+  const {data, status} = useGetHandler(keys.USERS, urls.USERS)   
 
   useEffect(() => {
     if (data) {
-      const user = searchUsers(query, data);
+      const user = searchUsers(query, data.data);
       setUsers(user);
     }
   }, [data, query]);
@@ -33,7 +34,7 @@ const Users = () => {
     <>
       <Container sx={{ marginTop: "40px" }}>
         <TextField
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={e => setQuery(e.target.value)}
           value={query}
           fullWidth
           label="search the user"
@@ -41,7 +42,7 @@ const Users = () => {
       </Container>
       {status === 'loading' ? <CircularProgress sx={{marginLeft: '50%', marginTop: '20%'}} /> : <Container>
         <List>
-          {users.map((user) => (
+          {users.map(user => (
             <ListItem key={user.id}>
               <ListItemText
                 primary={`${user.name} (${user.username})`}

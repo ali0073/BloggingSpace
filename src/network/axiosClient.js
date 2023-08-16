@@ -8,7 +8,7 @@ axiosClient.defaults.baseURL = `${import.meta.env.VITE_BASE_URL}`;
 axiosClient.interceptors.response.use( response => {
   
   return response;
-}, (error) => {
+}, error => {
 
   if (error.response.status === 500) {
     toast.error("Something went wrong, please try again!");
@@ -17,7 +17,6 @@ axiosClient.interceptors.response.use( response => {
 });
 
 export const getRequest = async url => {
-  const users = await axiosClient.get(`${url}`)
-  return users.data
+  return await axiosClient.get(`${url}`)
 };
 
