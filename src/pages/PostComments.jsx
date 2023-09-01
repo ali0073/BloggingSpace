@@ -3,9 +3,10 @@ import { keys } from '../network/keys';
 import { urls } from '../network/urls';
 import { useGetHandler } from '../network/useQueryClient';
 import { filterComments } from '../utils/utils';
-import { Container, ListItemText, CircularProgress } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import { context } from '../context/ContextProvider';
 import Comments from '../components/Comments';
+import CommentHeader from '../components/CommentHeader';
 
 const PostComments = () => {
   const [comments, setComments] = useState([]);
@@ -25,12 +26,7 @@ const PostComments = () => {
 
   return (
     <>
-      <Container>
-        <ListItemText
-          primary={`Post Title :${post.title}`}
-          secondary={`Post Body :${post.body}`}
-        />
-      </Container>
+      <CommentHeader post={post} />
       {isLoading ? (
         <CircularProgress sx={{ marginLeft: '50%', marginTop: '20%' }} />
       ) : (
