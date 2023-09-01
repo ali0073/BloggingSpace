@@ -4,11 +4,19 @@ import { context } from '../context/ContextProvider';
 import { Container, List, ListItem, ListItemText, Button } from '@mui/material';
 import { routes } from '../routes/routes';
 import { replaceID } from '../utils/utils';
+import ShowCommentsButton from './ShowCommentsButton';
+import PostHeader from './PostHeader';
 
 const Posts = ({ posts, id }) => {
   const { setPostId, setPost } = useContext(context);
 
   const navigate = useNavigate();
+
+  const handleShowCommentClick = post => {
+    navigate(replaceID(routes.COMMENTS, id));
+    setPostId(post.id);
+    setPost({ title: post.title, body: post.body });
+  };
 
   return (
     <Container>
@@ -16,21 +24,12 @@ const Posts = ({ posts, id }) => {
         {posts.map(post => (
           <ListItem key={post.id}>
             <Container>
-              <ListItemText
-                primary={`Title: ${post.title}`}
-                secondary={post.body}
+              <PostHeader post={post} />
+              <ShowCommentsButton
+                label={'Show comments'}
+                handleShowCommentClick={handleShowCommentClick}
+                post={post}
               />
-              <Button
-                sx={{ color: 'black', borderColor: 'black' }}
-                variant="outlined"
-                onClick={() => {
-                  navigate(replaceID(routes.COMMENTS, id));
-                  setPostId(post.id);
-                  setPost({ title: post.title, body: post.body });
-                }}
-              >
-                Show comments
-              </Button>
             </Container>
           </ListItem>
         ))}
