@@ -6,6 +6,7 @@ import { routes } from '../routes/routes';
 import { replaceID } from '../utils/utils';
 import ShowCommentsButton from './ShowCommentsButton';
 import PostHeader from './PostHeader';
+import { constants } from '../utils/constants';
 
 const Posts = ({ posts, id }) => {
   const { setPostId, setPost } = useContext(context);
@@ -26,7 +27,7 @@ const Posts = ({ posts, id }) => {
             <Container>
               <PostHeader post={post} />
               <ShowCommentsButton
-                label={'Show comments'}
+                label={constants.SHOW_COMMENTS_BUTTON_LABEL}
                 handleShowCommentClick={handleShowCommentClick}
                 post={post}
               />
