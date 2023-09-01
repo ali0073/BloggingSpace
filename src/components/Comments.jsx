@@ -1,6 +1,6 @@
 import { Container, List, ListItem, ListItemText } from '@mui/material';
 
-const CommentsList = ({ comments }) => {
+const Comments = ({ comments }) => {
   return (
     <Container>
       <List>
@@ -19,4 +19,4 @@ const CommentsList = ({ comments }) => {
   );
 };
 
-export default CommentsList;
+export default Comments;

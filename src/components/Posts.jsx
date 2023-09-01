@@ -5,7 +5,7 @@ import { Container, List, ListItem, ListItemText, Button } from '@mui/material';
 import { routes } from '../routes/routes';
 import { replaceID } from '../utils/utils';
 
-const PostsList = ({ posts, id }) => {
+const Posts = ({ posts, id }) => {
   const { setPostId, setPost } = useContext(context);
 
   const navigate = useNavigate();
@@ -39,4 +39,4 @@ const PostsList = ({ posts, id }) => {
   );
 };
 
-export default PostsList;
+export default Posts;
