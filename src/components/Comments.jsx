@@ -8,8 +8,8 @@ const Comments = ({ comments }) => {
           <ListItem key={comment.id}>
             <Container>
               <ListItemText
-                primary={`Name :${comment.name}`}
-                secondary={`Comment :${comment.body}`}
+                primary={`Name: ${comment.name}`}
+                secondary={`Comment: ${comment.body}`}
               />
             </Container>
           </ListItem>
