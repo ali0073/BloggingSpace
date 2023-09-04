@@ -1,5 +1,5 @@
 export const routes = {
   USERS: '/users',
   POSTS: '/users/:id/posts',
-  COMMENTS: '/users/:id/posts/comments',
+  COMMENTS: '/users/:id/posts/:id/comments',
 };

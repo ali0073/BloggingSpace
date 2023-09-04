@@ -1,32 +1,28 @@
-import { useContext, useEffect, useState } from 'react';
 import { keys } from '../network/keys';
 import { urls } from '../network/urls';
 import { useGetHandler } from '../network/useQueryClient';
-import { filterComments } from '../utils/utils';
+import { replaceID } from '../utils/utils';
 import { CircularProgress } from '@mui/material';
-import { context } from '../context/ContextProvider';
 import Comments from '../components/Comments';
-import CommentHeader from '../components/CommentHeader';
+import Post from '../components/Post';
+import { useParams } from 'react-router-dom';
 
 const PostComments = () => {
-  const [comments, setComments] = useState([]);
-  const { postId, post } = useContext(context);
+  const { id } = useParams();
 
-  const { data, isLoading } = useGetHandler(
+  const { data: comments, isLoading } = useGetHandler(
     keys.POST_COMMENTS,
-    urls.POST_COMMENTS
+    replaceID(urls.POST_COMMENTS, id)
   );
 
-  useEffect(() => {
-    if (data) {
-      const comments = filterComments(data, postId);
-      setComments(comments);
-    }
-  }, [data]);
+  const { data: post } = useGetHandler(
+    keys.USER_POST,
+    replaceID(urls.USER_POST, id)
+  );
 
   return (
     <>
-      <CommentHeader post={post} />
+      <Post post={post} />
       {isLoading ? (
         <CircularProgress sx={{ marginLeft: '50%', marginTop: '20%' }} />
       ) : (
