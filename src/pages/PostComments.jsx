@@ -1,5 +1,5 @@
-import { keys } from '../network/keys';
-import { urls } from '../network/urls';
+import { POST_COMMENTS_KEY, USER_POST_KEY } from '../network/keys';
+import { POST_COMMENTS_URL, USER_POST_URL } from '../network/urls';
 import { useGetHandler } from '../network/useQueryClient';
 import { replaceID } from '../utils/utils';
 import { CircularProgress } from '@mui/material';
@@ -11,22 +11,22 @@ const PostComments = () => {
   const { id } = useParams();
 
   const { data: comments, isLoading } = useGetHandler(
-    keys.POST_COMMENTS,
-    replaceID(urls.POST_COMMENTS, id)
+    POST_COMMENTS_KEY,
+    replaceID(POST_COMMENTS_URL, id)
   );
 
   const { data: post } = useGetHandler(
-    keys.USER_POST,
-    replaceID(urls.USER_POST, id)
+    USER_POST_KEY,
+    replaceID(USER_POST_URL, id)
   );
 
   return (
     <>
-      <Post post={post} />
+      <Post post={post?.data} />
       {isLoading ? (
         <CircularProgress sx={{ marginLeft: '50%', marginTop: '20%' }} />
       ) : (
-        <Comments comments={comments} />
+        <Comments comments={comments?.data} />
       )}
     </>
   );

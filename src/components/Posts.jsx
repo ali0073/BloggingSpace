@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Container, List, ListItem, Button } from '@mui/material';
-import { routes } from '../routes/routes';
+import { COMMENTS } from '../routes/routes';
 import { replaceID } from '../utils/utils';
 import Post from './Post';
 import { constants } from '../utils/constants';
@@ -9,7 +9,7 @@ const Posts = ({ posts, id }) => {
   const navigate = useNavigate();
 
   const handleShowCommentClick = post => {
-    navigate(replaceID(routes.COMMENTS, id, post.id));
+    navigate(replaceID(COMMENTS, id, post.id));
   };
 
   return (
@@ -17,8 +17,8 @@ const Posts = ({ posts, id }) => {
       {posts && (
         <Container>
           <List>
-            {posts.map(post => (
-              <ListItem key={post.id}>
+            {posts?.map(post => (
+              <ListItem key={post?.id}>
                 <Container>
                   <Post post={post} />
                   <Button

@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { routes } from './routes';
+import { COMMENTS, POSTS, USERS } from './routes';
 import Users from '../pages/Users';
 import UserPosts from '../pages/UserPosts';
 import PostComments from '../pages/PostComments';
@@ -7,9 +7,9 @@ import PostComments from '../pages/PostComments';
 const Routing = () => {
   return (
     <Routes>
-      <Route path={routes.USERS} element={<Users />} />
-      <Route path={routes.POSTS} element={<UserPosts />} />
-      <Route path={routes.COMMENTS} element={<PostComments />} />
+      <Route path={USERS} element={<Users />} />
+      <Route path={POSTS} element={<UserPosts />} />
+      <Route path={COMMENTS} element={<PostComments />} />
     </Routes>
   );
 };

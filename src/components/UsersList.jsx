@@ -1,6 +1,6 @@
 import { Container, List, ListItem, ListItemText } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../routes/routes';
+import { POSTS } from '../routes/routes';
 import { replaceID } from '../utils/utils';
 
 const UsersList = ({ users }) => {
@@ -10,13 +10,13 @@ const UsersList = ({ users }) => {
       {users && (
         <Container>
           <List>
-            {users.map(user => (
-              <ListItem key={user.id}>
+            {users?.map(user => (
+              <ListItem key={user?.id}>
                 <ListItemText
-                  primary={`${user.name} (${user.username})`}
-                  secondary={`Email: ${user.email}, Website: ${user.website}, Company: ${user.company.name}`}
+                  primary={`${user?.name} (${user?.username})`}
+                  secondary={`Email: ${user?.email}, Website: ${user?.website}, Company: ${user?.company?.name}`}
                   onClick={() => {
-                    navigate(replaceID(routes.POSTS, user.id));
+                    navigate(replaceID(POSTS, user.id));
                   }}
                 />
               </ListItem>
