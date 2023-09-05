@@ -4,12 +4,14 @@ export const searchUsers = (query, users) => {
   );
 };
 
-export const replaceID = (route, firstId, secondId) => {
-  if (route && firstId && secondId) {
-    return `${route.replace(':id', firstId)}/${secondId}/comments`;
-  }
-
-  if (route && firstId) {
-    return route.replace(':id', firstId);
-  }
+export const replaceID = (route, ...ids) => {
+  let index = 0;
+  return route.replace(/:id/g, () => {
+    if (index < ids.length) {
+      const replaced = ids[index];
+      index++;
+      return replaced;
+    }
+    return ':id';
+  });
 };

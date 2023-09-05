@@ -9,7 +9,7 @@ const Posts = ({ posts, id }) => {
   const navigate = useNavigate();
 
   const handleShowCommentClick = post => {
-    navigate(replaceID(routes.POSTS, id, post.id));
+    navigate(replaceID(routes.COMMENTS, id, post.id));
   };
 
   return (
