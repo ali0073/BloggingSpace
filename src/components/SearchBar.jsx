@@ -1,5 +1,5 @@
 import { Container, TextField } from '@mui/material';
-import { constants } from '../utils/constants';
+import { SEARCH_BAR_LABEL } from '../utils/constants';
 
 const SearchBar = ({ setQuery, query }) => {
   return (
@@ -8,7 +8,7 @@ const SearchBar = ({ setQuery, query }) => {
         onChange={e => setQuery(e.target.value)}
         value={query}
         fullWidth
-        label={constants.SEARCH_BAR_LABEL}
+        label={SEARCH_BAR_LABEL}
       />
     </Container>
   );

@@ -3,7 +3,7 @@ import { Container, List, ListItem, Button } from '@mui/material';
 import { COMMENTS } from '../routes/routes';
 import { replaceID } from '../utils/utils';
 import Post from './Post';
-import { constants } from '../utils/constants';
+import { SHOW_COMMENTS } from '../utils/constants';
 
 const Posts = ({ posts, id }) => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Posts = ({ posts, id }) => {
                     variant="outlined"
                     onClick={() => handleShowCommentClick(post)}
                   >
-                    {constants.SHOW_COMMENTS_BUTTON}
+                    {SHOW_COMMENTS}
                   </Button>
                 </Container>
               </ListItem>
