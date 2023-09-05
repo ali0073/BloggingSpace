@@ -22,11 +22,11 @@ const PostComments = () => {
 
   return (
     <>
-      <Post post={post?.data} />
+      <Post post={post} />
       {isLoading ? (
         <CircularProgress sx={{ marginLeft: '50%', marginTop: '20%' }} />
       ) : (
-        <Comments comments={comments?.data} />
+        <Comments comments={comments} />
       )}
     </>
   );

@@ -19,7 +19,7 @@ const UserPosts = () => {
       {isLoading ? (
         <CircularProgress sx={{ marginLeft: '50%', marginTop: '20%' }} />
       ) : (
-        <Posts posts={posts?.data} id={id} />
+        <Posts posts={posts} id={id} />
       )}
     </>
   );

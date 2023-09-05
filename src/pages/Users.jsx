@@ -15,7 +15,7 @@ const Users = () => {
 
   useEffect(() => {
     if (data) {
-      const user = searchUsers(query, data?.data);
+      const user = searchUsers(query, data);
       setUsers(user);
     }
   }, [data, query]);

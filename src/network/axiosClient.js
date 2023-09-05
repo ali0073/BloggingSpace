@@ -10,7 +10,7 @@ axiosClient.interceptors.response.use(
     return response;
   },
   error => {
-    if (error.response.status >= 500 || error.response.status < 600) {
+    if (error?.response?.status >= 500 && error?.response?.status < 600) {
       toast.error('Something went wrong, please try again!');
     }
     return Promise.reject(error);
@@ -19,5 +19,5 @@ axiosClient.interceptors.response.use(
 
 export const getRequest = async url => {
   const response = await axiosClient.get(url);
-  return response;
+  return response?.data;
 };
