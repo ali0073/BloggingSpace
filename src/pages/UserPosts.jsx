@@ -4,14 +4,16 @@ import { useGetHandler } from '../network/useQueryClient';
 import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import Posts from '../components/Posts';
-import { replaceID } from '../utils/utils';
+import { replaceId } from '../utils/utils';
 
 const UserPosts = () => {
-  const { id } = useParams();
+  const { userId } = useParams();
+
+  const idUser = [{ key: 'userId', value: userId }];
 
   const { data: posts, isLoading } = useGetHandler(
     USER_POSTS_KEY,
-    replaceID(USER_POSTS_URL, id)
+    replaceId(USER_POSTS_URL, idUser)
   );
 
   return (
@@ -19,7 +21,7 @@ const UserPosts = () => {
       {isLoading ? (
         <CircularProgress sx={{ marginLeft: '50%', marginTop: '20%' }} />
       ) : (
-        <Posts posts={posts} id={id} />
+        <Posts posts={posts} userId={userId} />
       )}
     </>
   );
