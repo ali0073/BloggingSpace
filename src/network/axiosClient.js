@@ -10,7 +10,8 @@ axiosClient.interceptors.response.use(
     return response;
   },
   error => {
-    if (error?.response?.status >= 500 && error?.response?.status < 600) {
+    const responseStatus = String(error?.response?.status);
+    if (responseStatus.startsWith('5')) {
       toast.error('Something went wrong, please try again!');
     }
     return Promise.reject(error);
