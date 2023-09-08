@@ -8,9 +8,9 @@ import Post from '../components/Post';
 import { useParams } from 'react-router-dom';
 
 const PostComments = () => {
-  const { userId, postId } = useParams();
+  const { postId } = useParams();
 
-  const idUser = [{ key: 'userId', value: userId }];
+  const idUser = [{ key: 'userId', value: postId }];
   const idPost = [{ key: 'postId', value: postId }];
 
   const { data: comments, isLoading } = useGetHandler(
