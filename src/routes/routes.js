@@ -1,6 +1,3 @@
-export const routes = {
-  USERS: "/users",
-  POSTS: "/users/:id/posts",
-  COMMENTS: "/users/:id/posts/comments",
-};
-
+export const USERS = '/users';
+export const POSTS = '/users/:userId/posts';
+export const COMMENTS = '/users/:userId/posts/:postId/comments';

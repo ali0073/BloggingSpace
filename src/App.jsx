@@ -1,7 +1,7 @@
-import { BrowserRouter } from "react-router-dom";
-import Routing from "./routes/Routing";
+import { BrowserRouter } from 'react-router-dom';
+import Routing from './routes/Routing';
 
-function App() { 
+function App() {
   return (
     <BrowserRouter>
       <Routing />
@@ -10,4 +10,3 @@ function App() {
 }
 
 export default App;
-
